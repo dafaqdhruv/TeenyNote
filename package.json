@@ -4,7 +4,7 @@
   "description": "Lightweight note taking and task scheduling application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dafaqdhruv/TeenyNote/issues"
   },
-  "homepage": "https://github.com/dafaqdhruv/TeenyNote#readme"
+  "homepage": "https://github.com/dafaqdhruv/TeenyNote#readme",
+  "devDependencies": {
+    "electron": "^9.0.0"
+  }
 }
