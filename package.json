@@ -1,0 +1,19 @@
+{
+  "name": "teenynote",
+  "version": "1.0.0",
+  "description": "Lightweight note taking and task scheduling application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dafaqdhruv/TeenyNote.git"
+  },
+  "author": "Dhruv Srivastava <dhruvdhs.ds@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dafaqdhruv/TeenyNote/issues"
+  },
+  "homepage": "https://github.com/dafaqdhruv/TeenyNote#readme"
+}
