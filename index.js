@@ -1,43 +1,57 @@
-const { app, BrowserWindow } = require('electron')
+'use strict'
 
-function createWindow () {
-  // Create the browser window.
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  })
+const path = require('path');
+const { app, ipcMain } = require('electron')
 
-  // and load the index.html of the app.
-  win.loadFile('')
+const Window = require('./src/window')
+const DataStore = require('./src/DataStore')
 
-  // Open the DevTools.
-  win.webContents.openDevTools()
+const todosData = new DataStore( {name : 'Todos Main'})
+
+
+function main () {
+
+	let mainWindow = new Window ({
+		file : path.join('./','index.html'),
+		frame : false
+	})
+
+	let addTodoWindow
+
+	mainWindow.once('show',() => {mainWindow.webContents.send('todos', todosData.todos)})
+
+	ipcMain.on('add-todo-window', () => {
+
+		console.log("biyatch")
+
+		if(!addTodoWindow){
+
+			addTodoWindow = new Window({ 
+				file : path.join('./','add.html'),
+				height : 400,
+				width : 400,
+				parent : mainWindow
+			})
+
+			addTodoWindow.on('closed', () => { addTodoWindow = null	})
+		}
+
+	})
+
+	ipcMain.on('add-todo', (event,todo) => {
+		const updatedTodos = todosData.addTodo(todo).todos
+		mainWindow.send('todos',updatedTodos)
+	})
+
+	ipcMain.on('delete-todo', (event,todo) => {
+		const updatedTodos = todosData.deleteTodo(todo).todos
+		mainWindow.send('todos',updatedTodos)
+	})
+
+	console.log('STARTED BIYATCH')
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.on('ready', () => {setTimeout(()=>{main()},300)})
 
-// Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+app.on('window-all-closed', function () { app.quit()})
 
-app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
-})
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

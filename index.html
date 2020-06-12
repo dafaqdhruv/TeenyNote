@@ -1,0 +1,99 @@
+<html>
+
+<head>
+
+	<title>This is the Title</title>
+	<style>
+		body{
+			font : caption;
+			background-image: url("./src/media/image(1).png");
+
+			background-image: url("./src/media/image(1).png");
+
+			height :100%;
+
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+			/*background-color: rgba(250,222,212,20);*/
+		}
+		textarea{
+			overflow: none;
+			background: transparent;
+			outline: none;
+			border: none;
+			width: 100%;
+			font-size: 20px;
+			padding: 70px;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		var observe;
+
+		if(window.attachEvent){
+			observe = function(element,event,handler){
+				element.attachEvent(event,handler,false);
+			};
+		}
+		else {
+			observe=function(element, event, handler){
+				element.addEventListener(event,handler,false);
+			};
+		}
+
+		function init(){
+
+			var text = document.getElementById('note');
+
+			function resize() {
+				text.style.height = 'auto';
+				text.style.height = text.scrollHeight+'px';
+			}
+			//zero delay change text
+			function delayedResize(){
+				window.setTimeout(resize,0);
+			}
+
+			observe(text,'change',resize);
+			observe(text,'cut',delayedResize);
+			observe(text,'paste',delayedResize);
+			observe(text,'drop',delayedResize);
+			observe(text,'keydown',delayedResize);
+
+			// text.focus();
+			text.select();
+			resize();
+			// document.getElementById('note').scrollTop = document.getElementById("note").scrollHeight;
+			// window.scrollTo(0,text.scrollHeight);
+			text.scrollIntoView(false);
+		} 
+
+	</script>
+</head>
+<body onload="init();">
+	
+
+	<h1>Teenynote </h1>
+	<p> 
+		Teeny note is a lightweight note taking and task scheduling application written in JS. Currently under works.
+	</p>
+	<div class = "container">
+		<div class = "columns">
+			<div class = "column col-10">
+				<h2 class = "text-center"><u>Todos</u></h2>
+				<textarea  contenteditable style = "line-height: 2.40;" id="note" name="one" placeholder="Type here..."></textarea>
+		<!-- 		<input type="text" class="inline-input" name="THREE"/>blyat -->
+				<br>
+				<button id = "createTodoBtn" type = "button" class = "btn" onclick="text.scrollIntoView(false);">Todos</button>
+				<script type="text/javascript">require('./list.js');</script>
+				<ul id = "todoList"></ul>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
