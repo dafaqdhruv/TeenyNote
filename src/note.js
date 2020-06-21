@@ -2,7 +2,8 @@
 
 class note {
 
-	constructor (text,date,time){
+	constructor (ID,text,date,time){
+		this.id = ID;
 		this.text = text;
 		this.date = date;
 		this.time = time;

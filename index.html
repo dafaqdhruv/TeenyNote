@@ -50,6 +50,18 @@
 			font-size: 20px;
 		}
 
+		#note{
+  background: transparent;
+  overflow: auto;
+  resize: all;
+  border: 0 none;
+  font-size: 16px;
+  line-height: 80%;
+  outline: none;
+  height: 100%;
+  position: absolute;
+}
+
 
 
 	</style>
@@ -77,6 +89,7 @@
 					var width = window.innerWidth|| document.documentElement.clientWidth|| document.body.clientWidth;
 					//console.log(width);
 					document.getElementById("date").style.paddingLeft = width - 350;
+					document.getElementById("note").style.width = width-100;
 				}, 250);
 				</script>
 			<div id = "content">
