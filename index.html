@@ -1,112 +1,58 @@
+<!DOCTYPE html>
 <html>
 
 <head>
+	<title>
+		TeenyNote v1.0.2
+	</title>
+	<link rel="stylesheet" type="text/css" href="./src/css/index.css">
+	<link rel="stylesheet" type="text/css" href="./src/css/nav.css">
+	<link rel="stylesheet" type="text/css" href="./src/css/nativize.css">
+	<link rel="stylesheet" type="text/css" href="./src/css/section.css">
 
-	<title>This is the Title</title>
-	<style>
-		body{
-			background-color: rgba(0,0,0,0.1);
-		}
-		#paper{
-			width: 100%;
-			height : 100%;
-			position: relative;
-			margin: auto;
-			padding-top: 40px;
-			padding-bottom: 40px;
-			background-color: white;
-			box-shadow: 0px 0px 5px 0px #888;
-		}
-		#paper::before{
-			content: '';
-			width: 2px;
-			height: 100%;
-			position: absolute;
-			top: 0%;
-			left: 40px;
-			background-color: rgba(255,0,0,0.6);
-		}
-		#pattern{
-			height: 100%;
-			background-image: repeating-linear-gradient(white 0px,white 24px, teal 25px);
-		}
-		#content{
-			position: absolute;
-			top: 15;
-			left: 0;
-			padding-top: 0px;
-			padding-left: 56px;
-			padding-right: 16px;
-			font-size: 18px;
-			line-height: 25px;
-			letter-spacing: 1px;
-			word-spacing: 5px;
-			z-index: 2;
-		}
-		#date{
-			position: -webkit-sticky; /*Safari*/
-			position: sticky;
-			top: 20px;
-			font-size: 20px;
-		}
-
-		#note{
-  background: transparent;
-  overflow: auto;
-  resize: all;
-  border: 0 none;
-  font-size: 16px;
-  line-height: 80%;
-  outline: none;
-  height: 100%;
-  position: absolute;
-}
-
-
-
-	</style>
+	<link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&display=swap" rel="stylesheet"> <!-- font-family: 'Karla', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> <!-- font-family: 'Oswald', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,200&display=swap" rel="stylesheet"> <!-- font-family: 'Source Sans Pro', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet"> <!-- font-family: 'Roboto Condensed', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet"> <!-- font-family: 'Roboto Condensed', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap" rel="stylesheet"> <!-- font-family: 'Ubuntu', sans-serif; -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap" rel="stylesheet"> <!--font-family: 'Open Sans Condensed', sans-serif;-->
+  <!-- Look at the awesome logo I made at: <a href='https://onlinelogomaker.com' title='Online Logo Maker'>onlinelogomaker.com</a> -->
 </head>
+
 <body>
-	<div id = "paper">
-		<div id = "pattern">
-			<div id = "date"></div>
-			<script type="text/javascript">
-				setInterval(()=>{
-					let date = new Date();
-					let h = date.getHours();
-					let m = date.getMinutes();
-					let s = date.getSeconds();
-					let dd = date.getDate();
-					let mm = date.getMonth()+1;
-					let yyyy = date.getFullYear();
-					h = (h<10)?('0'+h):(h);
-					m = (m<10)?('0'+m):(m);
-					s = (s<10)?('0'+s):(s);
-					dd = (dd<10)?('0'+dd):(dd);
-					mm= (mm<10)?('0'+mm):(mm);
 
-					document.getElementById("date").innerHTML = `Date : ${dd}/${mm}/${yyyy}\nTime : ${h}:${m}:${s}`;
-					var width = window.innerWidth|| document.documentElement.clientWidth|| document.body.clientWidth;
-					//console.log(width);
-					document.getElementById("date").style.paddingLeft = width - 350;
-					document.getElementById("note").style.width = width-100;
-				}, 250);
-				</script>
-			<div id = "content">
-				<h1>Teenynote </h1>
-	<p> 
-		Teeny note is a lightweight note taking and task scheduling application written in JS. Currently under works.
-	</p>
+<nav class = "nav-js is-shown">
+    <header class="nav-header">
+      <h1 class="nav-title">Teeny<strong>Note</strong></h1>
+    </header>
 
-				<textarea  contenteditable style = "line-height: 2.40;" id="note" name="one" placeholder="Type here..."></textarea>
-				<br>
-				<script type="text/javascript">require('./list.js');</script>
-				
+    <div class="nav-create-note">
+      <h5 class="nav-category">  
+      	<button type="button" id="button-new-note" data-section="windows" class="nav-button">Create a new <em>Note</em></button> 
+      </h5>
+    </div>
 
-			</div>
-		</div>
-	</div>
+    <div class="nav-list-notes">
+      <h5 class="nav-category">      
+      	<button type="button" id="button-listNotes" data-section="menus" class="nav-button">Recent <em>Notes</em> </button>
+      </h5>
+    </div>
 
+    <footer class="nav-footer">
+      <div class="nav-footer-text">Source</div>
+      <a class="nav-footer-logo" href="https://github.com/dafaqdhruv/TeenyNote" aria-label="Homepage">GitHub</a>
+    </footer>
+       
+	<script type="text/javascript">require('./src/index.js')</script>
+       
+</nav>
 
+<section id="windows-section" class="section js-section u-category-windows is-shown"> 
+      <div class="section-wrapper">
+        <h1 clas ="banner" style = "font-size: 250px; font-family: 'Ubuntu", sans-serif;>N</h1>
+      </div>
+</section>
+       
 </body>
 </html>

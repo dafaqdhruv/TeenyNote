@@ -1,8 +1,8 @@
 'use strict'
 
-const note = require('./note.js')
+const note = require('./background_processes/note.js')
 const fs = require('fs')
-const file = 'Notes.JSON'
+const file = 'Notes.json'
 
 let date = new Date();
 let h = date.getHours();
@@ -25,24 +25,28 @@ function clearFile(filename){
 	fs.truncate(filename,0,()=>{console.log('emptied')})
 }
 
+var hey = '';
+var heyString = [];
+var heyJSON;
+clearFile(file);
 
-// while(id<10){
-// 	let hey = new note(id,`yeaboi #${id++}`,`${dd}/${mm}/${yyyy}`,`${h}:${m}:${s}`);
-// 	let heyString = JSON.stringify(hey)+'\n';
-// 	setVal(heyString,'Notes.txt');
-// 	console.log(heyString)	
-// 	// ye = getVal('Notes.txt');
-// 	// console.log(JSON.stringify(ye[]));
-// }
+while(id<10){
+	hey = new note(id,`yeaboi #${id++}`,`${dd}/${mm}/${yyyy}`,`${h}:${m}:${s}`);
+	heyString.push( hey);
+}
+heyJSON = JSON.stringify(heyString);
+setVal(heyJSON,'Notes.json');
+console.log(heyString)	
+console.log(heyJSON)
+var ret = JSON.parse(heyJSON)
+console.log(ret[4])
+//clearFile(file);
 
-//clearFile('Notes.txt');
-
-var ye = getVal(file);
-console.log(JSON.stringify(ye));
-console.log();
-console.log(ye[1]);
-
-// fs.writeFile('Notes.txt','','utf-8',(err)=>{if(err)throw err;})
+// var ye = getVal(file);
+// var yeOBJ = JSON.parse(ye);
+// console.log(yeOBJ);
+// console.log();
+// console.log(ye);
 
 
 

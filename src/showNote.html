@@ -1,0 +1,38 @@
+<html>
+
+<head>
+
+	<title>This is the Title</title>
+	<link href="./css/showNote.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src = "./background_processes/clock.js"></script>
+
+</head>
+<body>
+	<div id = "paper">
+		<div id = "pattern">
+			<div id = "timestamp">
+				<div id = "date"></div>
+				<div id = "time"></div>
+				<script type="text/javascript">clock();</script>
+			</div>
+			<div id = "content">
+				<h1>Teenynote </h1>
+				Teeny note is a lightweight note taking and task scheduling application written in JS. Currently under works.
+				<br>
+				<br>
+				<br>
+				<textarea class = "title" id = "title" placeholder="yeeet"></textarea>
+				<br>
+
+			<!-- <textarea  contenteditable style = "line-height: 2.40;" id="note" name="one" placeholder="Type here..."></textarea> -->
+				<div class = "note" id = "note" contenteditable="true"></div>
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src = "./newNote.js"></script>
+
+</body>
+</html>
