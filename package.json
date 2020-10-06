@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/dafaqdhruv/TeenyNote#readme",
   "devDependencies": {
-    "electron": "^9.0.0"
+    "electron": "^9.3.0"
   },
   "dependencies": {
     "electron-store": "^5.2.0",
